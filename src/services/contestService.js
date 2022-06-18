@@ -8,6 +8,6 @@ export async function getAllContest(callback){
     callback(response.data.data);
   }catch(err){
     console.log(err);
-    toast.error("An unexpected error occured");
+    toast.error("An unexpected error occured!!!");
   }
 }
