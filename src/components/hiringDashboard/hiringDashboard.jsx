@@ -5,7 +5,7 @@ class HiringDashboard extends Component {
   state = { 
     data:[],
    } 
-  componentWillMount(){
+   componentDidMount(){
     getAllHiring((data)=>{
       this.setState({data});
     })

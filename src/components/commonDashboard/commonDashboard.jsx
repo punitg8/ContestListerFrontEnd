@@ -3,6 +3,7 @@ import DataGrid, { Scrolling, Pager, Paging } from 'devextreme-react/data-grid';
 import SelectBox from 'devextreme-react/select-box';
 import CheckBox from 'devextreme-react/check-box';
 import "./commonDashboard.css";
+import moment from 'moment';
 
 class CommonDashboard extends Component {
   state = {  } 
@@ -20,11 +21,23 @@ class CommonDashboard extends Component {
     columns[5].width = 200;
     columns[4].calculateDisplayValue= (rowdata)=>{
       let duration="";
-      // let days=rowdata.duration/60*60*24;
-      // let 
-      // if(rowdata.duration/60*60*24>0) duration+=
-      return rowdata.duration; 
+      let days=Math.floor(rowdata.duration/(60*60*24));
+      let hours = Math.floor(rowdata.duration/(60*60))-days*24;
+      let minutes=Math.floor(rowdata.duration/60)-hours*60-days*24*60;
+      let seconds=rowdata.duration-minutes*60-hours*60*60-days*24*60*60;
+      if(days>0) duration+=days+"days ";
+      if(hours>0) duration+=hours+"hr ";
+      if(minutes>0) duration+=minutes+"mins ";
+      if(seconds>0) duration+=seconds+"secs";
+      return duration; 
     }
+    columns[5].calculateDisplayValue= (rowdata)=>{
+      return moment(rowdata.startTime)._d;
+    }
+    columns[6].calculateDisplayValue= (rowdata)=>{
+      return moment(rowdata.endTime)._d;
+    }
+    console.log(columns[3].cellRender);
   }
 
   render() { 
@@ -37,6 +50,7 @@ class CommonDashboard extends Component {
         showBorders={true}
         customizeColumns={this.customizeColumns}
       >
+        
         <Scrolling ></Scrolling>
         <Paging defaultPageSize={17} />
         <Pager

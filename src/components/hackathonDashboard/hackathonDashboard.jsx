@@ -5,7 +5,7 @@ class HackathonDashboard extends Component {
   state = { 
     data:[],
    } 
-   componentWillMount(){
+   componentDidMount(){
     getAllHackathon((data)=>{
       this.setState({data});
     })

@@ -5,7 +5,7 @@ class ContestDashboard extends Component {
   state = { 
     data:[],
    } 
-  componentWillMount(){
+  componentDidMount(){
     getAllContest((data)=>{
       this.setState({data});
     })
