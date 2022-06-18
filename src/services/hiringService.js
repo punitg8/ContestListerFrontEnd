@@ -1,6 +1,6 @@
 import http from "./httpService.js"
 import { toast } from "react-toastify";
-const baseURL = "http://localhost:5000/api"
+const baseURL = "https://contest-lister.herokuapp.com/api"
 
 export async function getAllHiring(callback){
   try{
