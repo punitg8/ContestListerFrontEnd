@@ -1,8 +1,19 @@
 import React, { Component } from 'react'
+import {getAllHackathon} from "../../services/hackathonService";
+import CommonDashboard from '../commonDashboard/commonDashboard';
 class HackathonDashboard extends Component {
-  state = {  } 
+  state = { 
+    data:[],
+   } 
+   componentWillMount(){
+    getAllHackathon((data)=>{
+      this.setState({data});
+    })
+  }
   render() { 
-    return (<div>Hackathon Dashboard</div>);
+    return (<div>
+      <CommonDashboard data={this.state.data}></CommonDashboard>
+    </div>);
   }
 }
  

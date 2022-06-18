@@ -1,8 +1,19 @@
 import React, { Component } from 'react'
+import {getAllHiring} from "../../services/hiringService";
+import CommonDashboard from '../commonDashboard/commonDashboard';
 class HiringDashboard extends Component {
-  state = {  } 
+  state = { 
+    data:[],
+   } 
+  componentWillMount(){
+    getAllHiring((data)=>{
+      this.setState({data});
+    })
+  }
   render() { 
-    return (<div>Hiring Dashboard</div>);
+    return (<div>
+      <CommonDashboard data={this.state.data}></CommonDashboard>
+    </div>);
   }
 }
  

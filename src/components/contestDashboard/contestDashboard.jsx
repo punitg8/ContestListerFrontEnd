@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
-
+import { getAllContest } from '../../services/contestService';
+import CommonDashboard from '../commonDashboard/commonDashboard';
 class ContestDashboard extends Component {
-  state = {  } 
+  state = { 
+    data:[],
+   } 
+  componentWillMount(){
+    getAllContest((data)=>{
+      this.setState({data});
+    })
+  }
   render() { 
-    return (<div>Contest Dashboard</div>);
+    return (<div>
+      <CommonDashboard data={this.state.data}></CommonDashboard>
+    </div>);
   }
 }
  

@@ -5,9 +5,13 @@ import ContestDashboard from "./components/contestDashboard/contestDashboard"
 import HiringDashboard from "./components/hiringDashboard/hiringDashboard"
 import HackathonDashboard from "./components/hackathonDashboard/hackathonDashboard"
 import ErrorPage from "./components/errorPage/errorPage"
+import {ToastContainer} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   return (
     <Router>
+      <ToastContainer />
       <Navbar/>
       <Routes>
         <Route path="/" element={<Navigate to="/contest"/>}/>
