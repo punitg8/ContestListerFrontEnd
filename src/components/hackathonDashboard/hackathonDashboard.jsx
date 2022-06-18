@@ -1,18 +1,24 @@
 import React, { Component } from 'react'
 import {getAllHackathon} from "../../services/hackathonService";
+import CommonSidebar from '../commonSidebar/commonSidebar';
 import CommonDashboard from '../commonDashboard/commonDashboard';
 class HackathonDashboard extends Component {
   state = { 
-    data:[],
+    originalData:[],
+    filteredData:[]
    } 
-   componentDidMount(){
-    getAllHackathon((data)=>{
-      this.setState({data});
+  componentDidMount(){
+    getAllHackathon((originalData)=>{
+      this.setState({originalData});
     })
   }
+  setFilteredData(filteredData){
+    this.setState({filteredData});
+  }
   render() { 
-    return (<div>
-      <CommonDashboard data={this.state.data}></CommonDashboard>
+    return (<div className='d-flex p-2 bd-highlight'>
+      <CommonSidebar originalData={this.state.originalData} setFilteredData={(data)=>this.setFilteredData(data)}></CommonSidebar>
+      <CommonDashboard data={this.state.filteredData}></CommonDashboard>
     </div>);
   }
 }

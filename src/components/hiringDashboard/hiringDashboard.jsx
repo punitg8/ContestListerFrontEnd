@@ -1,18 +1,24 @@
 import React, { Component } from 'react'
 import {getAllHiring} from "../../services/hiringService";
+import CommonSidebar from '../commonSidebar/commonSidebar';
 import CommonDashboard from '../commonDashboard/commonDashboard';
 class HiringDashboard extends Component {
   state = { 
-    data:[],
+    originalData:[],
+    filteredData:[]
    } 
-   componentDidMount(){
-    getAllHiring((data)=>{
-      this.setState({data});
+  componentDidMount(){
+    getAllHiring((originalData)=>{
+      this.setState({originalData});
     })
   }
+  setFilteredData(filteredData){
+    this.setState({filteredData});
+  }
   render() { 
-    return (<div>
-      <CommonDashboard data={this.state.data}></CommonDashboard>
+    return (<div className='d-flex p-2 bd-highlight'>
+      <CommonSidebar originalData={this.state.originalData} setFilteredData={(data)=>this.setFilteredData(data)}></CommonSidebar>
+      <CommonDashboard data={this.state.filteredData}></CommonDashboard>
     </div>);
   }
 }
