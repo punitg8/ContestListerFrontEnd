@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DataGrid, { Scrolling, Pager, Paging, Column } from 'devextreme-react/data-grid';
+import DataGrid, { Scrolling, Pager, Paging } from 'devextreme-react/data-grid';
 import "./commonDashboard.css";
 import moment from 'moment';
 
@@ -8,6 +8,7 @@ class CommonDashboard extends Component {
 
 
   customizeColumns(columns) {
+    if(!columns[0]) return;
     columns[0].visible = false;
     columns[7].visible = false;
     columns[8].visible = false;
@@ -39,10 +40,12 @@ class CommonDashboard extends Component {
     columns[3].calculateDisplayValue= (rowdata)=>{
       return `<a href="${rowdata.url}" target="_blank">${rowdata.url}</a>`;
     }
+    columns[4].allowSorting = false;
   }
 
   render() { 
     return (<div>
+      <h1 className='p-2'>{this.props.section} Schedule</h1>
       <DataGrid
       className='container'
         id='gridContainer'
@@ -50,9 +53,12 @@ class CommonDashboard extends Component {
         keyExpr="id"
         showBorders={true}
         customizeColumns={this.customizeColumns}
+        showColumnLines={true}
+        showRowLines={false}
+        rowAlternationEnabled={true}
       >
         <Scrolling ></Scrolling>
-        <Paging defaultPageSize={17} />
+        <Paging defaultPageSize={15} />
         <Pager
           visible={true}
           allowedPageSizes={5}

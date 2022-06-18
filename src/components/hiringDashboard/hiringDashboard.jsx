@@ -18,7 +18,7 @@ class HiringDashboard extends Component {
   render() { 
     return (<div className='d-flex p-2 bd-highlight'>
       <CommonSidebar originalData={this.state.originalData} setFilteredData={(data)=>this.setFilteredData(data)}></CommonSidebar>
-      <CommonDashboard data={this.state.filteredData}></CommonDashboard>
+      <CommonDashboard data={this.state.filteredData} section="Hiring"></CommonDashboard>
     </div>);
   }
 }

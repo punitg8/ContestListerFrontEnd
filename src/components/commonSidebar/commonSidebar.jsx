@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import "./commonSidebar.css"
 class CommonSidebar extends Component {
   state = { 
     platformChecked:{
@@ -50,28 +50,31 @@ class CommonSidebar extends Component {
   }
   render() { 
     return (
-      <div className='m-4'>
+      <div className='sidebar'>
+        <h2 className='text-center p-2'>Filters</h2>
         <form onSubmit={(e)=>this.handleOnSubmit(e)}>
-          <div className='text-center'><strong>Platform</strong></div>
+          <div>
+          <div className=""><strong>Platform</strong></div>
           {Object.keys(this.state.platformChecked).map((option)=>{
             return(
-              <div className='d-flex p-2 bd-highlight'>
-                <input className='align-self-center' type="checkbox" id={option} name={option} value={option} checked={this.state.platformChecked[option]} onChange={(e)=>this.handleOnPlatformChange(e)}></input>
-                <label for={option}>{option}</label><br></br>
+              <div className='d-flex p-2 bd-highlight' key={option}>
+                <input className='align-self-center form-check-input filled-in m-1' type="checkbox" id={option} name={option} value={option} checked={this.state.platformChecked[option]} onChange={(e)=>this.handleOnPlatformChange(e)}></input>
+                <label htmlFor={option}>{option}</label><br></br>
               </div>
             )
           })}
-          <div className='text-center mt-3'><strong>Status</strong></div>
+          <div className='mt-3'><strong>Status</strong></div>
           {Object.keys(this.state.statusChecked).map((option)=>{
             return(
-              <div className='d-flex p-2 bd-highlight'>
-                <input className='align-self-center' type="checkbox" id={option} name={option} value={option} checked={this.state.statusChecked[option]} onChange={(e)=>this.handleOnStatusChange(e)}></input>
-                <label for={option}>{option}</label><br></br>
+              <div className='d-flex p-2 bd-highlight' key={option}>
+                <input className='align-self-center form-check-input filled-in m-1' type="checkbox" id={option} name={option} value={option} checked={this.state.statusChecked[option]} onChange={(e)=>this.handleOnStatusChange(e)}></input>
+                <label htmlFor={option}>{option}</label><br></br>
               </div>
             )
           })}
-          <div class="text-center mt-3">
-            <button className='btn btn-primary' type="submit">Apply</button>
+          </div>
+          <div className="text-center mt-3">
+            <button className='btn btn-outline-dark' type="submit">Apply</button>
           </div>
         </form>
       </div>

@@ -1,0 +1,8 @@
+.form-check-input:checked{
+  background-color: black;
+  border-color: white
+}
+
+.sidebar{
+  margin-right: 5%;
+}
