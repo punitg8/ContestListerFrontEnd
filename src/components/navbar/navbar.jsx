@@ -7,7 +7,7 @@ class Navbar extends Component {
     return (<>
       <ReactNavbar bg="dark" variant="dark">
         <Container>
-        <ReactNavbar.Brand href="#home">Contest-Lister</ReactNavbar.Brand>
+        <ReactNavbar.Brand href="#">Contest-Lister</ReactNavbar.Brand>
         <Nav className="me-auto">
           <Link className="nav-item nav-link" to="/contest">Contest</Link>
           <Link className="nav-item nav-link" to="/hackathon">Hackathon</Link>

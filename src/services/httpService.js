@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import history from '../history'
 
-axios.defaults.baseURL = "https://contest-lister.herokuapp.com/api";
+axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const instance = axios.create();
 instance.interceptors.response.use(function (response) {
