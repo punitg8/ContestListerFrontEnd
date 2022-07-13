@@ -23,7 +23,7 @@ class CommonDashboard extends Component {
           clientId: CLIENT_ID,
           discoveryDocs: DISCOVERY_DOCS,
           scope: SCOPES,
-          plugin_name:'ContestListerCredential'
+          plugin_name:process.env.REACT_APP_GOOGLE_PLUGIN_NAME
         })
         gapi.client.load('calendar', 'v3', () => console.log('Popup'))
         gapi.auth2.getAuthInstance().signIn()
