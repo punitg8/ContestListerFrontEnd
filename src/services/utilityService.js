@@ -10,3 +10,9 @@ export const convertDuration = (origianlDuration) =>{
   if(seconds>0) convertedDuration+=seconds+"secs";
   return convertedDuration;
 }
+
+export const checkAllFalse = (option) => {
+  let allFalse=false;
+  Object.keys(option).forEach(selected=>allFalse|=option[selected]);
+  return !allFalse;
+}

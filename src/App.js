@@ -15,13 +15,9 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path="/" element={<Navigate to="/contest"/>}/>
-
         <Route path="/contest" element={<ContestDashboard/>}/>
-
         <Route path="/hiring" element={<HiringDashboard/>}/>
-
         <Route path="/hackathon" element={<HackathonDashboard/>}/>
-
         <Route path="*" element={<ErrorPage/>}/>
       </Routes>
     </Router>

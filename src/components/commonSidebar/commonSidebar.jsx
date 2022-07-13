@@ -1,47 +1,58 @@
 import React, { Component } from 'react'
+import { checkAllFalse } from '../../services/utilityService';
 import "./commonSidebar.css"
 class CommonSidebar extends Component {
   state = { 
     platformChecked:{
-      "HackerRank":true,
-      "HackerEarth":true,
-      "AtCoder":true,
-      "CodeForces":true,
-      "LeetCode":true,
-      "Kick Start":true,
-      "TopCoder":true,
-      "CodeChef":true
+      "HackerRank":false,
+      "HackerEarth":false,
+      "AtCoder":false,
+      "CodeForces":false,
+      "LeetCode":false,
+      "Kick Start":false,
+      "TopCoder":false,
+      "CodeChef":false
     },
     statusChecked:{
-      "Running":true,
-      "In 24 Hours":true,
-      "Later":true
+      "Running":false,
+      "In 24 Hours":false,
+      "Later":false
     }
   } 
+
   componentDidUpdate(prevProps, prevState){
     if(this.props.originalData!==prevProps.originalData)
       this.props.setFilteredData(this.props.originalData);
   }
+
   handleOnSubmit(e){
+    const {originalData,setFilteredData}=this.props;
+    const {platformChecked,statusChecked} = this.state;
     e.preventDefault();
-    console.log(this.state.statusChecked);
-    let newFilteredData=[];
-    newFilteredData=this.props.originalData.filter((entry)=>{
-      return this.state.platformChecked[entry.platform]
-      &&(
-        (this.state.statusChecked["Running"]&&entry.onGoing)
-        ||(this.state.statusChecked["In 24 Hours"]&&entry.in24Hours)
-        ||(this.state.statusChecked["Later"]&&!entry.in24Hours)
-      );
-    })
-    this.props.setFilteredData(newFilteredData);
+    let newFilteredData=originalData;
+    if(!checkAllFalse(platformChecked))
+      newFilteredData=originalData.filter((entry)=>{
+        return platformChecked[entry.platform]
+      })
+
+    if(!checkAllFalse(statusChecked))
+      newFilteredData=originalData.filter((entry)=>{
+        return(
+          (statusChecked["Running"]&&entry.onGoing)
+          ||(statusChecked["In 24 Hours"]&&entry.in24Hours)
+          ||(statusChecked["Later"]&&!entry.in24Hours)
+        );
+      })
+    setFilteredData(newFilteredData);
   }
+
   handleOnPlatformChange(e){
     const platform=e.target.value;
     let platformChecked={...this.state.platformChecked};
     platformChecked[platform]=!platformChecked[platform];
     this.setState({platformChecked})
   }
+  
   handleOnStatusChange(e){
     const status=e.target.value;
     let statusChecked={...this.state.statusChecked};
