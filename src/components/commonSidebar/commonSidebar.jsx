@@ -31,16 +31,17 @@ class CommonSidebar extends Component {
     e.preventDefault();
     let newFilteredData=originalData;
     if(!checkAllFalse(platformChecked))
-      newFilteredData=originalData.filter((entry)=>{
+      newFilteredData=newFilteredData.filter((entry)=>{
         return platformChecked[entry.platform]
       })
-
+    console.log(originalData);
     if(!checkAllFalse(statusChecked))
-      newFilteredData=originalData.filter((entry)=>{
+      newFilteredData=newFilteredData.filter((entry)=>{
+        const {onGoing,in24Hours} = entry;
         return(
-          (statusChecked["Running"]&&entry.onGoing)
-          ||(statusChecked["In 24 Hours"]&&entry.in24Hours)
-          ||(statusChecked["Later"]&&!entry.in24Hours)
+          (statusChecked["Running"]&&onGoing)
+          ||(statusChecked["In 24 Hours"]&&in24Hours)
+          ||(statusChecked["Later"]&&!in24Hours&&!onGoing)
         );
       })
     setFilteredData(newFilteredData);
