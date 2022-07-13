@@ -8,9 +8,7 @@ class HackathonDashboard extends Component {
     filteredData:[]
    } 
   componentDidMount(){
-    getAllHackathon((originalData)=>{
-      this.setState({originalData});
-    })
+    getAllHackathon(originalData=> this.setState({originalData}));
   }
   setFilteredData(filteredData){
     this.setState({filteredData});

@@ -34,7 +34,6 @@ class CommonSidebar extends Component {
       newFilteredData=newFilteredData.filter((entry)=>{
         return platformChecked[entry.platform]
       })
-    console.log(originalData);
     if(!checkAllFalse(statusChecked))
       newFilteredData=newFilteredData.filter((entry)=>{
         const {onGoing,in24Hours} = entry;
@@ -62,13 +61,14 @@ class CommonSidebar extends Component {
   }
   
   renderPlatformFilter(){
+    const {platformChecked} = this.state;
     return(
       <div>
         <div className=""><strong>Platform</strong></div>
-        {Object.keys(this.state.platformChecked).map((option)=>{
+        {Object.keys(platformChecked).map((option)=>{
           return(
             <div className='d-flex p-2 bd-highlight' key={option}>
-              <input className='align-self-center form-check-input filled-in m-1' type="checkbox" id={option} name={option} value={option} checked={this.state.platformChecked[option]} onChange={(e)=>this.handleOnPlatformChange(e)}></input>
+              <input className='align-self-center form-check-input filled-in m-1' type="checkbox" id={option} name={option} value={option} checked={platformChecked[option]} onChange={(e)=>this.handleOnPlatformChange(e)}></input>
               <label htmlFor={option}>{option}</label><br></br>
             </div>
           )
@@ -78,13 +78,14 @@ class CommonSidebar extends Component {
   }
 
   renderStatusFilter(){
+    const {statusChecked} = this.state;
     return (
       <div>
         <div className='mt-3'><strong>Status</strong></div>
-        {Object.keys(this.state.statusChecked).map((option)=>{
+        {Object.keys(statusChecked).map((option)=>{
           return(
             <div className='d-flex p-2 bd-highlight' key={option}>
-              <input className='align-self-center form-check-input filled-in m-1' type="checkbox" id={option} name={option} value={option} checked={this.state.statusChecked[option]} onChange={(e)=>this.handleOnStatusChange(e)}></input>
+              <input className='align-self-center form-check-input filled-in m-1' type="checkbox" id={option} name={option} value={option} checked={statusChecked[option]} onChange={(e)=>this.handleOnStatusChange(e)}></input>
               <label htmlFor={option}>{option}</label><br></br>
             </div>
           )

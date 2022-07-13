@@ -8,9 +8,7 @@ class ContestDashboard extends Component {
     filteredData:[]
    } 
   componentDidMount(){
-    getAllContest((originalData)=>{
-      this.setState({originalData});
-    })
+    getAllContest(originalData=> this.setState({originalData}));
   }
   setFilteredData(filteredData){
     this.setState({filteredData});

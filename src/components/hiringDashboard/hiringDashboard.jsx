@@ -8,9 +8,7 @@ class HiringDashboard extends Component {
     filteredData:[]
    } 
   componentDidMount(){
-    getAllHiring((originalData)=>{
-      this.setState({originalData});
-    })
+    getAllHiring(originalData=> this.setState({originalData}));
   }
   setFilteredData(filteredData){
     this.setState({filteredData});
