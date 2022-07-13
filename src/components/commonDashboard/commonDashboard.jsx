@@ -9,7 +9,6 @@ import timerLogo from'../../assets/icons/timer.png';
 class CommonDashboard extends Component {
   
   handleOnCellClick(row){
-    console.log(process.env.REACT_APP_GOOGLE_PLUGIN_NAME);
     let gapi = window.gapi
     const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID
     const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
