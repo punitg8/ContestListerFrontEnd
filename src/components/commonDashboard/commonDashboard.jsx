@@ -23,7 +23,7 @@ class CommonDashboard extends Component {
           clientId: CLIENT_ID,
           discoveryDocs: DISCOVERY_DOCS,
           scope: SCOPES,
-          plugin_name:process.env.REACT_APP_GOOGLE_PLUGIN_NAME
+          plugin_name:process.env.REACT_APP_GOOGLE_PLUGIN_NAME,
         })
         gapi.client.load('calendar', 'v3', () => console.log('Popup'))
         gapi.auth2.getAuthInstance().signIn()
@@ -37,6 +37,7 @@ class CommonDashboard extends Component {
             'end': {
               'dateTime': endTime,
             },
+            "visibility": "public"
           }
           var request = gapi.client.calendar.events.insert({
             'calendarId': 'primary',
@@ -52,7 +53,6 @@ class CommonDashboard extends Component {
   customizeColumns(columns) {
     if(!columns[0]) return;
     [0,7,8,9,10].forEach(element=>columns[element].visible=false);
-
 
     columns[2].width = 100;
 
